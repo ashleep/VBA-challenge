@@ -14,8 +14,6 @@ Sub StockDisplay():
     Dim TickerSymbol As String 'string for ticker symbol letters
     Dim Row As Long 'Long since there are many many rows
     Dim PrintRow As Long 'Long since there are many many rows
-    'Dim Clmn As Range
-    'Dim posCondition As FormatCondition, negCondition As FormatCondition
 
     Dim GreatestIncrease As Double
     Dim GreatestIncreaseTS As String
@@ -104,24 +102,8 @@ Sub StockDisplay():
         
         Columns("L").NumberFormat = "0.00%"
         
-        'Set Clmn = Range("K2:K2000")
         
-        'Clmn.FormatConditions.Delete
-        
-        'Set posCondition = Clmn.FormatConditions.Add(xlColorScale, xlGreater, "0")
-    
-        'Set negCondition = Clmn.FormatConditions.Add(xlColorScale, xlLess, "0")
-        
-        'With posCondition
-        '    .Interior.Color = vbGreen
-         '   End With
-            
-       ' With negCondition
-        '    .Interior.Color = vbRed
-        '    End With
-        
-        
-        'Use if statement to format colors
+        'Use if statement to conditionally format colors
         Row = 2
         Change = Cells(Row, 11).Value
         TickerSymbol = Cells(Row, 10).Value
@@ -144,7 +126,7 @@ Sub StockDisplay():
 
 
         'Challenges
-        
+        'Initiate variables with first row information
         TSRow = 2
         TickerSearch = Cells(TSRow, 10)
         GreatestIncrease = Cells(TSRow, 12).Value
@@ -154,6 +136,7 @@ Sub StockDisplay():
         GreatestTV = Cells(TSRow, 13).Value
         GreatestTVTS = Cells(TSRow, 10)
         
+        'loop through list and reassign variables if needed
         While TickerSearch <> Empty
             TSRow = TSRow + 1
             
@@ -177,6 +160,7 @@ Sub StockDisplay():
             
         Wend
         
+        'print correct information
         Range("O2") = "Greatest % Increase"
         Range("O3") = "Greatest % Decrease"
         Range("O4") = "Greatest % Total Volume"
